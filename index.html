@@ -13,9 +13,9 @@
       --text:#e5e7eb;
       --sub:#a1a1aa;
       --main:#7c3aed;
-      --main2:#22c55e;
+      --green:#22c55e;
       --shadow:0 20px 50px rgba(0,0,0,.35);
-      --radius:20px;
+      --radius:22px;
     }
     *{box-sizing:border-box;}
     body{
@@ -29,12 +29,12 @@
       color:var(--text);
     }
     a{color:inherit;text-decoration:none;}
-    .wrap{max-width:1100px;margin:34px auto;padding:0 16px;}
+    .wrap{max-width:1120px;margin:34px auto;padding:0 16px;}
     .hero{
       border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
       box-shadow:var(--shadow);
-      border-radius:26px;
+      border-radius:28px;
       padding:26px;
       position:relative;
       overflow:hidden;
@@ -70,6 +70,7 @@
       background:rgba(255,255,255,.06);
       font-size:14px;
       transition:.15s;
+      cursor:pointer;
     }
     .btn:hover{transform:translateY(-1px);border-color:rgba(124,58,237,.6);}
     .btn.main{
@@ -79,6 +80,10 @@
     .btn.green{
       background:linear-gradient(90deg, rgba(34,197,94,.85), rgba(16,185,129,.85));
       border-color:transparent;
+    }
+    .btn.toggle.active{
+      background:rgba(255,255,255,.14);
+      border-color:rgba(124,58,237,.7);
     }
 
     .grid{
@@ -165,22 +170,72 @@
       border-radius:16px;
       padding:12px 14px;
     }
-    .titem b{color:#fff;}
+
+    /* PCB Gallery (Marquee) */
+    .pcb-wrap{
+      margin-top:16px;
+    }
+    .marquee{
+      position:relative;
+      overflow:hidden;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:14px;
+    }
+    .track{
+      display:flex;
+      gap:14px;
+      width:max-content;
+      animation: scroll 28s linear infinite;
+    }
+    .marquee:hover .track{
+      animation-play-state: paused;
+    }
+    @keyframes scroll{
+      0%{ transform: translateX(0); }
+      100%{ transform: translateX(-50%); }
+    }
+    .pcb-card{
+      width:260px;
+      flex:0 0 auto;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      border-radius:18px;
+      padding:12px;
+    }
+    .pcb-img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      display:block;
+      background:rgba(255,255,255,.03);
+    }
+    .pcb-title{
+      margin-top:10px;
+      font-weight:800;
+      font-size:14px;
+      line-height:1.35;
+    }
+    .pcb-sub{
+      margin-top:6px;
+      color:var(--sub);
+      font-size:13px;
+      line-height:1.6;
+    }
+
     .footer{
       margin:18px 0 24px;
       text-align:center;
       color:var(--sub);
       font-size:13px;
     }
-    .notice{
-      margin-top:10px;
-      border:1px dashed rgba(255,255,255,.22);
-      border-radius:16px;
-      padding:12px 14px;
-      color:var(--sub);
-      line-height:1.8;
-      background:rgba(0,0,0,.15);
-    }
+
+    /* section switching */
+    .section{display:none;}
+    .section.active{display:block;}
   </style>
 </head>
 
@@ -194,204 +249,327 @@
           <h1>兰兰佩因</h1>
           <div class="sub">
             电子信息工程｜嵌入式开发 · FPGA · 数据分析 · AI应用开发<br/>
-            技术表达型创作者（B站 / 抖音 / 小红书运营）
+            PR/PS 8年｜ACA影视设计国际专家认证｜多平台内容运营
           </div>
 
           <div class="chips">
             <span class="chip">智能车省三｜队长</span>
             <span class="chip">亚太杯 S奖｜队长</span>
-            <span class="chip">Zynq + AD9361｜收发链路</span>
-            <span class="chip">ACA影视设计国际专家认证</span>
+            <span class="chip">Zynq + AD9361｜WIP</span>
+            <span class="chip">新媒体中心主席</span>
           </div>
 
           <div class="btns">
-            <a class="btn main" href="https://space.bilibili.com/305579332" target="_blank">进入 B站主页</a>
-            <a class="btn" href="https://github.com/Lanlanpein" target="_blank">进入 GitHub</a>
-            <a class="btn green" href="#download">下载简历PDF（可选）</a>
+            <a class="btn main" href="https://space.bilibili.com/305579332" target="_blank">B站主页</a>
+            <a class="btn" href="https://github.com/Lanlanpein" target="_blank">GitHub主页</a>
+
+            <!-- toggle -->
+            <button class="btn toggle active" id="btn-tech">电子信息简历</button>
+            <button class="btn toggle" id="btn-film">影视 / 新媒体简历</button>
           </div>
 
-          <div class="notice">
-            说明：你可以把你真实项目仓库链接补上，这个主页就会变成你的“作品集入口”。<br/>
-            如果你愿意，我还可以帮你把每个项目写成更标准的<strong>STAR项目描述</strong>（校招/面试非常吃香）。
+          <div class="muted" style="margin-top:10px;line-height:1.8;">
+            提示：点击上方按钮可切换不同方向的简历界面（同一主页内切换展示）
           </div>
         </div>
       </div>
     </section>
 
-    <section class="grid">
+    <!-- ========== TECH RESUME ========== -->
+    <div class="section active" id="tech">
+      <section class="grid">
 
-      <!-- 左侧 -->
-      <div class="card">
-        <h2><span class="dot"></span>个人简介</h2>
-        <p>
-          我是兰兰佩因，具备从<strong>算法与软件架构 → 嵌入式系统实现 → FPGA射频链路开发</strong>的综合能力。
-          熟悉 STM32 嵌入式开发流程，可使用 C 语言实现控制算法、状态机任务调度与视觉相关算法；
-          同时具备 Python 数据分析、爬虫与 AI 大模型应用开发能力，MATLAB 用于数学建模与仿真验证。
-          多次担任队长完成竞赛项目落地，具备团队协作与交付意识。
+        <!-- 左侧 -->
+        <div class="card">
+          <h2><span class="dot"></span>电子信息方向｜个人简介</h2>
+          <p>
+            我是兰兰佩因，电子信息工程方向，具备从<strong>算法与软件架构 → 嵌入式系统实现 → FPGA射频链路学习验证</strong>的综合能力。
+            熟悉 STM32 / MicroPython 嵌入式开发，可实现 PID 控制、状态机调度、运动控制等工程逻辑；
+            具备 Python 数据分析、爬虫与 AI 大模型应用开发能力，MATLAB 用于数学建模与仿真验证。
+          </p>
+
+          <div class="tags">
+            <span class="tag">C语言</span>
+            <span class="tag">STM32嵌入式</span>
+            <span class="tag">MicroPython</span>
+            <span class="tag">PID控制</span>
+            <span class="tag">状态机</span>
+            <span class="tag">视觉算法</span>
+            <span class="tag">Python</span>
+            <span class="tag">数据分析</span>
+            <span class="tag">爬虫</span>
+            <span class="tag">机器学习</span>
+            <span class="tag">MATLAB建模仿真</span>
+            <span class="tag">FPGA / Zynq-7000</span>
+            <span class="tag">AD9361（WIP）</span>
+            <span class="tag">基础PCB设计</span>
+          </div>
+
+          <h2 style="margin-top:18px;"><span class="dot"></span>项目作品集（电子信息）</h2>
+
+          <div class="projects">
+            <div class="pitem">
+              <div class="ptitle">智能车（MicroPython PID）</div>
+              <div class="pdesc">
+                队长/软件负责人：串级PID+循迹+环岛/十字逻辑，具备调参与联调经验。
+              </div>
+              <div class="plink">
+                <a class="smallbtn" href="https://github.com/Lanlanpein/smartcar-micropython-pid" target="_blank">查看仓库</a>
+              </div>
+            </div>
+
+            <div class="pitem">
+              <div class="ptitle">STM32 从零搭建遥控玩具车</div>
+              <div class="pdesc">
+                运动控制 + 驱动封装 + 可扩展工程结构，展示嵌入式落地能力。
+              </div>
+              <div class="plink">
+                <a class="smallbtn" href="https://github.com/Lanlanpein/stm32-rc-car-from-scratch" target="_blank">查看仓库</a>
+              </div>
+            </div>
+
+            <div class="pitem">
+              <div class="ptitle">亚太杯数学建模（S奖）</div>
+              <div class="pdesc">
+                数据分析编程 + MATLAB 仿真验证，完整建模闭环输出结论。
+              </div>
+              <div class="plink">
+                <a class="smallbtn" href="https://github.com/Lanlanpein/apmcm-math-modeling" target="_blank">查看仓库</a>
+              </div>
+            </div>
+
+            <div class="pitem">
+              <div class="ptitle">房价预测（线性回归）</div>
+              <div class="pdesc">
+                爬虫/数据清洗/EDA/OLS回归建模，完成预测闭环与解释分析。
+              </div>
+              <div class="plink">
+                <a class="smallbtn" href="https://github.com/Lanlanpein/house-price-prediction-linear-regression" target="_blank">查看仓库</a>
+              </div>
+            </div>
+
+            <div class="pitem">
+              <div class="ptitle">Zynq + AD9361（WIP）</div>
+              <div class="pdesc">
+                OFDM / DDS上变频 / DDC下变频 学习验证路线持续更新。
+              </div>
+              <div class="plink">
+                <a class="smallbtn" href="https://github.com/Lanlanpein/zynq-ad9361-ofdm-lab" target="_blank">查看仓库</a>
+              </div>
+            </div>
+
+            <div class="pitem">
+              <div class="ptitle">爆款小红书文案模型（LLM应用）</div>
+              <div class="pdesc">
+                本地运行网页：输入API Key + 主题，一键生成5个标题+完整推文。
+              </div>
+              <div class="plink">
+                <a class="smallbtn" href="https://github.com/Lanlanpein/xiaohongshu-copywriting-llm" target="_blank">查看仓库</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧 -->
+        <div class="card">
+          <h2><span class="dot"></span>竞赛 / 荣誉 / 经历</h2>
+          <div class="timeline">
+            <div class="titem"><b>竞赛：</b>全国大学生智能汽车竞赛｜省级三等奖（队长 / 软件负责人）</div>
+            <div class="titem"><b>竞赛：</b>亚太杯数学建模竞赛｜S奖（队长 / 数据分析与仿真）</div>
+            <div class="titem"><b>项目：</b>大创《基于FPGA的分布式定位网络原型系统》（队员 / 收发链路）</div>
+            <div class="titem"><b>组织：</b>院新媒体中心主席 / 校学生会宣传设计部干事 / 班级宣传委员</div>
+            <div class="titem"><b>奖学金：</b>学习优秀 / 文体 / 团学工作奖学金</div>
+          </div>
+
+          <h2 style="margin-top:18px;"><span class="dot"></span>能力补充</h2>
+          <p class="muted">
+            具备基础 PCB 设计经验（见页面底部滚动展示区），并具备良好的工程表达与汇报能力，
+            适合嵌入式/FPGA/通信相关方向岗位与科研项目组。
+          </p>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- ========== FILM / MEDIA RESUME ========== -->
+    <div class="section" id="film">
+      <section class="grid">
+
+        <div class="card">
+          <h2><span class="dot"></span>影视 / 新媒体方向｜个人简介</h2>
+          <p>
+            我是兰兰佩因，具备 8 年 PR / PS 自学与实践经验，并获得 ACA 影视设计国际专家认证。
+            在校期间曾任院新媒体中心主席、校学生会宣传设计部干事，具备内容策划、视觉设计、视频剪辑与账号运营能力。
+            同时拥有工程背景，能够将“技术+内容”结合，具备较强的信息表达与逻辑呈现能力。
+          </p>
+
+          <div class="tags">
+            <span class="tag">Adobe Premiere</span>
+            <span class="tag">Photoshop</span>
+            <span class="tag">ACA国际认证</span>
+            <span class="tag">短视频剪辑</span>
+            <span class="tag">封面设计</span>
+            <span class="tag">内容策划</span>
+            <span class="tag">账号运营</span>
+            <span class="tag">新媒体传播</span>
+          </div>
+
+          <h2 style="margin-top:18px;"><span class="dot"></span>代表经历</h2>
+          <div class="timeline">
+            <div class="titem"><b>校学生会：</b>宣传设计部干事（海报/活动视觉/宣传物料）</div>
+            <div class="titem"><b>院新媒体中心：</b>主席（选题策划、视频剪辑、推文排版、团队协作）</div>
+            <div class="titem"><b>班级：</b>宣传委员（活动记录、班级文化宣传）</div>
+          </div>
+
+          <h2 style="margin-top:18px;"><span class="dot"></span>账号入口</h2>
+          <div class="btns" style="margin-top:10px;">
+            <a class="btn main" href="https://space.bilibili.com/305579332" target="_blank">B站主页</a>
+            <a class="btn" href="https://github.com/Lanlanpein" target="_blank">GitHub（技术身份）</a>
+          </div>
+
+          <h2 style="margin-top:18px;"><span class="dot"></span>加分优势</h2>
+          <p class="muted">
+            我不仅能做内容，更能做“有逻辑、有结构、有产品思维”的内容表达，
+            适合剪辑运营、品牌传播、新媒体策划、技术内容创作等方向。
+          </p>
+        </div>
+
+        <div class="card">
+          <h2><span class="dot"></span>奖项与能力证明</h2>
+          <div class="timeline">
+            <div class="titem"><b>证书：</b>ACA影视设计国际专家认证</div>
+            <div class="titem"><b>奖学金：</b>文体奖学金 / 团学工作奖学金</div>
+            <div class="titem"><b>综合：</b>具备策划、剪辑、视觉、运营全链路能力</div>
+          </div>
+
+          <h2 style="margin-top:18px;"><span class="dot"></span>我能提供的能力</h2>
+          <div class="timeline">
+            <div class="titem">短视频剪辑：节奏、转场、字幕、包装</div>
+            <div class="titem">视觉设计：海报、封面、信息排版</div>
+            <div class="titem">内容运营：选题、标题、数据复盘</div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- PCB滚动展示（共用底部） -->
+    <div class="pcb-wrap">
+      <section class="card">
+        <h2><span class="dot"></span>PCB 作品展示（滚动预览｜悬停暂停）</h2>
+        <p class="muted">以下为个人基础电路设计作品：光控、AC-DC、电源、音响放大、无线收发、滤波器、信号源等。</p>
+
+        <div class="marquee" style="margin-top:12px;">
+          <!-- track1 + track2 复制一份，形成无缝滚动 -->
+          <div class="track">
+            <!-- 1 -->
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb01.png" alt="光控报警器">
+              <div class="pcb-title">光控报警器</div>
+              <div class="pcb-sub">光敏检测 + 报警输出（基础模拟电路）</div>
+            </div>
+            <!-- 2 -->
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb02.png" alt="220V交流转9V直流">
+              <div class="pcb-title">220V交流转 9V直流电</div>
+              <div class="pcb-sub">整流滤波 + 稳压输出（电源模块）</div>
+            </div>
+            <!-- 3 -->
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb03.png" alt="多媒体音响功放">
+              <div class="pcb-title">多媒体音响（功率放大器）</div>
+              <div class="pcb-sub">音频放大 + 输出驱动（功放电路）</div>
+            </div>
+            <!-- 4 -->
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb04.png" alt="小功率无线发射机">
+              <div class="pcb-title">小功率无线发射机</div>
+              <div class="pcb-sub">基础RF发射电路（低功率）</div>
+            </div>
+            <!-- 5 -->
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb05.png" alt="单管接收机">
+              <div class="pcb-title">单管接收机（收音机）</div>
+              <div class="pcb-sub">基础射频接收与检波思路</div>
+            </div>
+            <!-- 6 -->
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb06.png" alt="抽象小玩具（振荡器）">
+              <div class="pcb-title">抽象小玩具（振荡器）</div>
+              <div class="pcb-sub">声音触发摇摆（有趣的模拟小作品）</div>
+            </div>
+            <!-- 7 -->
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb07.png" alt="基础模拟滤波器合集">
+              <div class="pcb-title">基础模拟滤波器大合集</div>
+              <div class="pcb-sub">低通 / 高通 / 带通 / 双陷T滤波</div>
+            </div>
+            <!-- 8 -->
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb08.png" alt="多种信号发生器">
+              <div class="pcb-title">多种信号发生器</div>
+              <div class="pcb-sub">方波 / 锯齿波 / 三角波发生器</div>
+            </div>
+
+            <!-- duplicate for seamless scroll -->
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb01.png" alt="光控报警器">
+              <div class="pcb-title">光控报警器</div>
+              <div class="pcb-sub">光敏检测 + 报警输出（基础模拟电路）</div>
+            </div>
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb02.png" alt="220V交流转9V直流">
+              <div class="pcb-title">220V交流转 9V直流电</div>
+              <div class="pcb-sub">整流滤波 + 稳压输出（电源模块）</div>
+            </div>
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb03.png" alt="多媒体音响功放">
+              <div class="pcb-title">多媒体音响（功率放大器）</div>
+              <div class="pcb-sub">音频放大 + 输出驱动（功放电路）</div>
+            </div>
+            <div class="pcb-card">
+              <img class="pcb-img" src="images/pcb/pcb04.png" alt="小功率无线发射机">
+              <div class="pcb-title">小功率无线发射机</div>
+              <div class="pcb-sub">基础RF发射电路（低功率）</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top:10px;">
+          注：图片展示区支持自动滚动，鼠标悬停可暂停，适合作为作品集快速预览。
         </p>
-
-        <div class="tags">
-          <span class="tag">C语言</span>
-          <span class="tag">STM32</span>
-          <span class="tag">多级PID</span>
-          <span class="tag">状态机</span>
-          <span class="tag">视觉算法</span>
-          <span class="tag">Python</span>
-          <span class="tag">数据分析</span>
-          <span class="tag">爬虫</span>
-          <span class="tag">AI大模型应用开发</span>
-          <span class="tag">MATLAB</span>
-          <span class="tag">FPGA / Zynq-7000</span>
-          <span class="tag">Vivado</span>
-          <span class="tag">AD9361</span>
-          <span class="tag">OFDM</span>
-          <span class="tag">DDS / DDC</span>
-          <span class="tag">基础PCB设计</span>
-          <span class="tag">PR/PS</span>
-        </div>
-
-        <h2 style="margin-top:18px;"><span class="dot"></span>项目作品集（建议你开源/脱敏后放GitHub）</h2>
-        <!-- ✅ 作品集 Projects -->
-<section class="card" style="margin-top:16px;">
-  <h2><span class="dot"></span>作品集 Projects</h2>
-  <p class="muted">
-    按方向整理的项目作品集（建议从嵌入式 → 数据建模 → AI → FPGA → PCB浏览）
-  </p>
-
-  <div style="margin-top:14px;">
-    <div class="chip" style="display:inline-block;margin-bottom:10px;">嵌入式 / 控制</div>
-    <div class="projects">
-      <div class="pitem">
-        <div class="ptitle">MicroPython 智能车 PID 控制</div>
-        <div class="pdesc">
-          PID调参与控制闭环，状态机任务结构，嵌入式控制思路与工程实现。
-        </div>
-        <div class="plink">
-          <a class="smallbtn" href="https://github.com/Lanlanpein/smartcar-micropython-pid" target="_blank">查看仓库</a>
-          <a class="smallbtn" href="https://space.bilibili.com/305579332" target="_blank">B站演示</a>
-        </div>
-      </div>
-
-      <div class="pitem">
-        <div class="ptitle">STM32 从零搭建遥控玩具车</div>
-        <div class="pdesc">
-          基于 STM32 完成驱动与控制逻辑搭建，体现外设、PWM、电机控制等工程能力。
-        </div>
-        <div class="plink">
-          <a class="smallbtn" href="https://github.com/Lanlanpein/stm32-rc-car-from-scratch" target="_blank">查看仓库</a>
-        </div>
-      </div>
+      </section>
     </div>
-  </div>
-
-  <div style="margin-top:16px;">
-    <div class="chip" style="display:inline-block;margin-bottom:10px;">数学建模 / 数据分析 / 机器学习</div>
-    <div class="projects">
-      <div class="pitem">
-        <div class="ptitle">亚太杯数学建模（S奖）</div>
-        <div class="pdesc">
-          数据分析编程 + MATLAB 仿真验证，完整建模流程与结果解释。
-        </div>
-        <div class="plink">
-          <a class="smallbtn" href="https://github.com/Lanlanpein/apmcm-math-modeling" target="_blank">查看仓库</a>
-        </div>
-      </div>
-
-      <div class="pitem">
-        <div class="ptitle">线性回归房价预测（爬虫 + 数据分析 + ML）</div>
-        <div class="pdesc">
-          数据采集/清洗/特征工程 + 线性回归预测，展示完整机器学习小项目闭环。
-        </div>
-        <div class="plink">
-          <a class="smallbtn" href="https://github.com/Lanlanpein/house-price-prediction-linear-regression" target="_blank">查看仓库</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:16px;">
-    <div class="chip" style="display:inline-block;margin-bottom:10px;">AI大模型应用 / 文案生成</div>
-    <div class="projects">
-      <div class="pitem">
-        <div class="ptitle">爆款小红书文案模型（LLM应用）</div>
-        <div class="pdesc">
-          基于 Python 的 AI 文案生成与结构化输出，适合商业化落地与内容创作场景。
-        </div>
-        <div class="plink">
-          <a class="smallbtn" href="https://github.com/Lanlanpein/xiaohongshu-copywriting-llm" target="_blank">查看仓库</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:16px;">
-    <div class="chip" style="display:inline-block;margin-bottom:10px;">FPGA / 通信（进行中 WIP）</div>
-    <div class="projects">
-      <div class="pitem">
-        <div class="ptitle">Zynq + AD9361 收发链路实验（WIP）</div>
-        <div class="pdesc">
-          当前处于框架搭建阶段：Tx/Rx 数据流、DDS/DDC验证、OFDM收发验证 Roadmap 持续更新。
-        </div>
-        <div class="plink">
-          <a class="smallbtn" href="https://github.com/Lanlanpein/zynq-ad9361-ofdm-lab" target="_blank">查看仓库</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:16px;">
-    <div class="chip" style="display:inline-block;margin-bottom:10px;">PCB作品展示</div>
-    <div class="projects">
-      <div class="pitem">
-        <div class="ptitle">PCB Design Gallery（8张作品图）</div>
-        <div class="pdesc">
-          基础PCB布局布线与模块化设计作品展示（图片画廊形式）。
-        </div>
-        <div class="plink">
-          <a class="smallbtn" href="https://github.com/Lanlanpein/pcb-design-gallery" target="_blank">查看仓库</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-      </div>
-
-      <!-- 右侧 -->
-      <div class="card">
-        <h2><span class="dot"></span>经历与荣誉（时间线）</h2>
-        <div class="timeline">
-          <div class="titem"><b>竞赛：</b>全国大学生智能汽车竞赛｜省级三等奖（队长 / 软件负责人）</div>
-          <div class="titem"><b>竞赛：</b>亚太杯数学建模竞赛｜S奖（队长 / 数据分析与仿真）</div>
-          <div class="titem"><b>项目：</b>大创《基于FPGA的分布式定位网络原型系统》（队员 / 收发链路）</div>
-          <div class="titem"><b>组织：</b>院新媒体中心主席 / 校学生会宣传设计部干事 / 班级宣传委员</div>
-          <div class="titem"><b>奖学金：</b>学习优秀 / 文体 / 团学工作奖学金</div>
-          <div class="titem"><b>技能：</b>PR/PS 自学 8年｜ACA影视设计国际专家认证</div>
-        </div>
-
-        <h2 style="margin-top:18px;"><span class="dot"></span>内容创作</h2>
-        <p class="muted">
-          B站、抖音、小红书均有运营账号，具备“技术表达 + 视觉设计 + 内容传播”能力。<br/>
-          适合：技术岗 / 科研项目组 / 需要写文档&做汇报的工程岗位。
-        </p>
-
-        <h2 id="download" style="margin-top:18px;"><span class="dot"></span>下载简历PDF（可选项）</h2>
-        <p class="muted">
-          你可以在仓库中上传一个 <b>resume.pdf</b>，然后把按钮链接改成：<br/>
-          <span style="color:#fff;">https://lanlanpein.github.io/resume.pdf</span>
-        </p>
-      </div>
-
-    </section>
 
     <div class="footer">
       © <span id="year"></span> 兰兰佩因｜Powered by GitHub Pages
     </div>
+
   </div>
 
   <script>
     document.getElementById("year").innerText = new Date().getFullYear();
+
+    const tech = document.getElementById("tech");
+    const film = document.getElementById("film");
+    const btnTech = document.getElementById("btn-tech");
+    const btnFilm = document.getElementById("btn-film");
+
+    btnTech.addEventListener("click", () => {
+      tech.classList.add("active");
+      film.classList.remove("active");
+      btnTech.classList.add("active");
+      btnFilm.classList.remove("active");
+      window.scrollTo({top: 0, behavior: "smooth"});
+    });
+
+    btnFilm.addEventListener("click", () => {
+      film.classList.add("active");
+      tech.classList.remove("active");
+      btnFilm.classList.add("active");
+      btnTech.classList.remove("active");
+      window.scrollTo({top: 0, behavior: "smooth"});
+    });
   </script>
 </body>
 </html>
