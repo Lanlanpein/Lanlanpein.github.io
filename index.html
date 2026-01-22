@@ -3,69 +3,265 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>蓝蓝pein - 个人简历</title>
+  <title>兰兰佩因｜个人简历</title>
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;background:#f6f7fb;margin:0;padding:0;}
-    .container{max-width:900px;margin:40px auto;background:#fff;padding:30px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);}
-    h1{margin:0;font-size:28px;}
-    .info{color:#666;margin-top:8px;line-height:1.8;}
-    h2{margin-top:30px;font-size:18px;border-left:4px solid #4f46e5;padding-left:10px;}
-    ul{line-height:1.9;}
-    .tag{display:inline-block;background:#eef2ff;color:#3730a3;padding:4px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;}
-    a{color:#4f46e5;text-decoration:none;}
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#111827;
+      --sub:#6b7280;
+      --main:#4f46e5;
+      --line:#e5e7eb;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:18px;
+    }
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "PingFang SC","Hiragino Sans GB","Microsoft YaHei", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    .wrap{
+      max-width:980px;
+      margin:36px auto;
+      padding:0 18px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:26px;
+      border:1px solid rgba(0,0,0,.03);
+    }
+    .top{
+      display:flex;
+      gap:18px;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    h1{margin:0;font-size:30px;letter-spacing:.5px;}
+    .role{margin-top:6px;color:var(--sub);line-height:1.7;}
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--text);
+      text-decoration:none;
+      font-size:14px;
+      transition:.15s;
+      background:#fff;
+    }
+    .btn:hover{transform:translateY(-1px);border-color:rgba(79,70,229,.35);box-shadow:0 10px 20px rgba(79,70,229,.1);}
+    .btn.main{background:var(--main);color:#fff;border-color:var(--main);}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      margin-top:16px;
+    }
+    @media (max-width: 880px){
+      .grid{grid-template-columns:1fr;}
+    }
+    h2{
+      margin:0 0 10px 0;
+      font-size:16px;
+      border-left:4px solid var(--main);
+      padding-left:10px;
+    }
+    p{margin:0;color:var(--text);line-height:1.85;}
+    .muted{color:var(--sub);}
+    .tags{margin-top:10px;}
+    .tag{
+      display:inline-block;
+      font-size:13px;
+      padding:6px 10px;
+      border-radius:999px;
+      margin:6px 8px 0 0;
+      background:#eef2ff;
+      color:#3730a3;
+      border:1px solid rgba(79,70,229,.12);
+    }
+    .list{margin:0;padding-left:18px;line-height:1.9;color:var(--text);}
+    .item{margin:8px 0;}
+    .title{
+      font-weight:700;
+    }
+    .line{
+      height:1px;
+      background:var(--line);
+      margin:18px 0;
+    }
+    .footer{
+      text-align:center;
+      color:var(--sub);
+      font-size:13px;
+      margin-top:18px;
+      padding-bottom:18px;
+    }
+    .highlight{
+      padding:12px 14px;
+      border-radius:14px;
+      background:linear-gradient(90deg, rgba(79,70,229,.07), rgba(79,70,229,.02));
+      border:1px solid rgba(79,70,229,.12);
+      margin-top:14px;
+      line-height:1.8;
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>蓝蓝pein｜电子信息工程</h1>
-    <div class="info">
-      技能方向：嵌入式 / 数据分析 / 数学建模 / FPGA学习中<br/>
-      GitHub：<a href="https://github.com/你的用户名" target="_blank">https://github.com/你的用户名</a><br/>
-      B站：<a href="https://space.bilibili.com/你的ID" target="_blank">点击进入</a>
+  <div class="wrap">
+
+    <div class="card">
+      <div class="top">
+        <div>
+          <h1>兰兰佩因</h1>
+          <div class="role">
+            电子信息工程｜嵌入式开发 / FPGA / 数据分析 / 技术内容创作者<br/>
+            <span class="muted">工科硬实力 + 表达力兼备，擅长把复杂知识讲清楚并落地实现</span>
+          </div>
+
+          <div class="btns">
+            <a class="btn main" href="https://space.bilibili.com/305579332" target="_blank">B站主页</a>
+            <a class="btn" href="https://github.com/Lanlanpein" target="_blank">GitHub主页</a>
+          </div>
+
+          <div class="highlight">
+            ✅ 全国大学生智能汽车竞赛 省级三等奖（队长 / 软件负责人）<br/>
+            ✅ 亚太杯数学建模竞赛 S奖（队长 / 数据分析与仿真负责人）<br/>
+            ✅ 大创：基于FPGA的分布式定位网络原型系统（队员 / 收发链路实现）
+          </div>
+        </div>
+
+        <div style="min-width:260px">
+          <h2>核心优势</h2>
+          <ul class="list">
+            <li class="item">C / Python / MATLAB 多语言工程能力</li>
+            <li class="item">STM32：PID / 状态机 / 视觉算法 / 控制调参</li>
+            <li class="item">Zynq + AD9361：OFDM / DDS / DDC 信号收发</li>
+            <li class="item">Python：爬虫 / 数据分析 / AI大模型应用开发</li>
+            <li class="item">PR / PS 8年 + ACA影视设计国际专家认证</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <h2>个人简介</h2>
-    <p>
-      电子信息工程专业，掌握 C / MATLAB / Python，具备程序设计、嵌入式开发、数据分析与数学建模能力。
-      同时在新媒体领域，拥有 Adobe PR 与 PS 专家认证，是B站UP主，持续输出学习与技术内容。
-    </p>
+    <div class="grid">
 
-    <h2>技能栈</h2>
-    <div>
-      <span class="tag">C语言</span>
-      <span class="tag">Python</span>
-      <span class="tag">MATLAB</span>
-      <span class="tag">嵌入式开发</span>
-      <span class="tag">Vivado 2018.3</span>
-      <span class="tag">FPGA（学习中）</span>
-      <span class="tag">PR / PS</span>
+      <div class="card">
+        <h2>个人简介</h2>
+        <p>
+          我是兰兰佩因，电子信息工程方向学生，具备从<strong>软件算法 → 嵌入式系统 → FPGA射频链路</strong>的综合能力。
+          可使用 C 语言实现基础程序与嵌入式工程开发，熟悉 STM32 项目开发流程；同时具备 Python 数据分析、爬虫与 AI 大模型应用开发经验，
+          MATLAB 用于数学建模与仿真验证。具备团队协作与项目管理能力，多次担任队长完成竞赛与项目交付。
+        </p>
+
+        <div class="line"></div>
+
+        <h2>技能栈</h2>
+        <div class="tags">
+          <span class="tag">C语言</span>
+          <span class="tag">STM32嵌入式</span>
+          <span class="tag">多级PID</span>
+          <span class="tag">状态机</span>
+          <span class="tag">视觉算法</span>
+          <span class="tag">Python</span>
+          <span class="tag">数据分析</span>
+          <span class="tag">爬虫</span>
+          <span class="tag">AI大模型应用开发</span>
+          <span class="tag">MATLAB建模仿真</span>
+          <span class="tag">FPGA / Zynq-7000</span>
+          <span class="tag">Vivado</span>
+          <span class="tag">AD9361</span>
+          <span class="tag">OFDM</span>
+          <span class="tag">DDS / DDC</span>
+          <span class="tag">基础PCB设计</span>
+          <span class="tag">PR / PS</span>
+          <span class="tag">新媒体运营</span>
+        </div>
+
+        <div class="line"></div>
+
+        <h2>项目经历</h2>
+        <ul class="list">
+          <li class="item">
+            <span class="title">全国大学生智能汽车竞赛｜省级三等奖（队长 / 软件负责人）</span><br/>
+            <span class="muted">
+              负责软件总体架构设计与主体代码结构搭建；实现多级 PID 控制、视觉算法、状态机任务调度；
+              完成整车运动控制与稳定运行，具备完整调参与联调经验。
+            </span>
+          </li>
+
+          <li class="item">
+            <span class="title">亚太杯数学建模竞赛｜S奖（队长 / 数据分析与仿真负责人）</span><br/>
+            <span class="muted">
+              负责建模思路设计、数据分析编程与 MATLAB 仿真验证；
+              输出完整建模报告与结果解释，完成从数据到结论的闭环。
+            </span>
+          </li>
+
+          <li class="item">
+            <span class="title">大创项目：基于 FPGA 的分布式定位网络原型系统设计与研制（队员）</span><br/>
+            <span class="muted">
+              使用 AC820 FPGA 开发板（Zynq-7000，ARM + FPGA）与 AD9361 射频模块完成收发链路搭建；
+              实现 OFDM、DDS 上变频与 DDC 下变频，完成信号收发代码编写与联调验证。
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>校园经历</h2>
+        <ul class="list">
+          <li class="item">校学生会｜宣传设计部｜干事</li>
+          <li class="item">院新媒体中心｜主席</li>
+          <li class="item">班级｜宣传委员</li>
+        </ul>
+
+        <div class="line"></div>
+
+        <h2>获奖荣誉</h2>
+        <ul class="list">
+          <li class="item">学习优秀奖学金</li>
+          <li class="item">文体奖学金</li>
+          <li class="item">团学工作奖学金</li>
+          <li class="item">全国大学生智能汽车竞赛 省三（队长）</li>
+          <li class="item">亚太杯数学建模 S奖（队长）</li>
+        </ul>
+
+        <div class="line"></div>
+
+        <h2>新媒体与设计能力</h2>
+        <ul class="list">
+          <li class="item">自学 PR / PS 8年，具备剪辑与视觉设计能力</li>
+          <li class="item">ACA 影视设计国际专家认证</li>
+          <li class="item">B站 / 抖音 / 小红书 多平台账号运营</li>
+        </ul>
+
+        <div class="line"></div>
+
+        <h2>建议你GitHub展示的仓库</h2>
+        <ul class="list">
+          <li class="item">✅ STM32：PID + 状态机工程模板</li>
+          <li class="item">✅ 智能车：代码结构（脱敏后开源）</li>
+          <li class="item">✅ Python：爬虫 + 数据分析项目</li>
+          <li class="item">✅ FPGA：AD9361 收发链路 Demo</li>
+          <li class="item">✅ AI应用：RAG/Agent Demo</li>
+        </ul>
+      </div>
+
     </div>
 
-    <h2>项目经历（示例）</h2>
-    <ul>
-      <li><b>FPGA + AD9361 学习项目</b>：基于 Vivado 2018.3，搭建基础工程结构，逐步熟悉ADI IP。</li>
-      <li><b>C语言课程内容规划</b>：14节体系化教学内容，覆盖基础语法、指针、结构体、文件、项目实战。</li>
-    </ul>
-
-    <h2>作品与链接</h2>
-    <ul>
-      <li>GitHub 作品集：<a href="https://github.com/你的用户名?tab=repositories" target="_blank">我的仓库列表</a></li>
-      <li>B站视频主页：<a href="https://space.bilibili.com/你的ID" target="_blank">我的UP主主页</a></li>
-    </ul>
-
-    <h2>教育背景</h2>
-    <ul>
-      <li>本科｜电子信息工程（大三结束，准备进入毕业阶段）</li>
-    </ul>
-
-    <h2>个人优势</h2>
-    <ul>
-      <li>工科技术 + 新媒体表达能力强，能把知识讲清楚</li>
-      <li>学习能力强，能快速上手新方向（FPGA/通信/项目实战）</li>
-      <li>适合技术岗 / 学习型岗位 / 内容型技术输出</li>
-    </ul>
+    <div class="footer">
+      © <span id="year"></span> 兰兰佩因｜Powered by GitHub Pages
+    </div>
   </div>
+
+  <script>
+    document.getElementById("year").innerText = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
