@@ -3,111 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>兰兰佩因｜个人简历</title>
+  <title>兰兰佩因｜个人简历 / 作品集</title>
   <style>
     :root{
-      --bg:#f6f7fb;
-      --card:#ffffff;
-      --text:#111827;
-      --sub:#6b7280;
-      --main:#4f46e5;
-      --line:#e5e7eb;
-      --shadow:0 10px 30px rgba(0,0,0,.08);
-      --radius:18px;
+      --bg:#0b1020;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.12);
+      --text:#e5e7eb;
+      --sub:#a1a1aa;
+      --main:#7c3aed;
+      --main2:#22c55e;
+      --shadow:0 20px 50px rgba(0,0,0,.35);
+      --radius:20px;
     }
+    *{box-sizing:border-box;}
     body{
       margin:0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "PingFang SC","Hiragino Sans GB","Microsoft YaHei", sans-serif;
-      background:var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+      background:
+        radial-gradient(900px 380px at 15% 10%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(800px 360px at 85% 20%, rgba(34,197,94,.18), transparent 60%),
+        radial-gradient(600px 300px at 60% 90%, rgba(59,130,246,.12), transparent 65%),
+        var(--bg);
       color:var(--text);
     }
-    .wrap{
-      max-width:980px;
-      margin:36px auto;
-      padding:0 18px;
-    }
-    .card{
-      background:var(--card);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:26px;
-      border:1px solid rgba(0,0,0,.03);
-    }
-    .top{
-      display:flex;
-      gap:18px;
-      justify-content:space-between;
-      align-items:flex-start;
-      flex-wrap:wrap;
-    }
-    h1{margin:0;font-size:30px;letter-spacing:.5px;}
-    .role{margin-top:6px;color:var(--sub);line-height:1.7;}
-    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
-    .btn{
-      display:inline-block;
-      padding:10px 14px;
-      border-radius:999px;
+    a{color:inherit;text-decoration:none;}
+    .wrap{max-width:1100px;margin:34px auto;padding:0 16px;}
+    .hero{
       border:1px solid var(--line);
-      color:var(--text);
-      text-decoration:none;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+      border-radius:26px;
+      padding:26px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;inset:-2px;
+      background:
+        radial-gradient(500px 140px at 25% 0%, rgba(124,58,237,.28), transparent 60%),
+        radial-gradient(450px 130px at 80% 10%, rgba(34,197,94,.2), transparent 60%);
+      pointer-events:none;
+      filter:blur(1px);
+    }
+    .hero > *{position:relative;z-index:1;}
+    .top{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;
+    }
+    h1{margin:0;font-size:34px;letter-spacing:.6px;}
+    .sub{
+      margin-top:8px;color:var(--sub);line-height:1.8;font-size:15px;
+    }
+    .chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;}
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      padding:6px 10px;border-radius:999px;
+      font-size:13px;color:#ddd;
+    }
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+    .btn{
+      padding:10px 14px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
       font-size:14px;
       transition:.15s;
-      background:#fff;
     }
-    .btn:hover{transform:translateY(-1px);border-color:rgba(79,70,229,.35);box-shadow:0 10px 20px rgba(79,70,229,.1);}
-    .btn.main{background:var(--main);color:#fff;border-color:var(--main);}
+    .btn:hover{transform:translateY(-1px);border-color:rgba(124,58,237,.6);}
+    .btn.main{
+      background:linear-gradient(90deg, rgba(124,58,237,.95), rgba(99,102,241,.9));
+      border-color:transparent;
+    }
+    .btn.green{
+      background:linear-gradient(90deg, rgba(34,197,94,.85), rgba(16,185,129,.85));
+      border-color:transparent;
+    }
+
     .grid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns:1.25fr .75fr;
       gap:16px;
       margin-top:16px;
     }
-    @media (max-width: 880px){
+    @media(max-width:900px){
       .grid{grid-template-columns:1fr;}
     }
-    h2{
-      margin:0 0 10px 0;
+
+    .card{
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+    }
+    .card h2{
+      margin:0 0 12px 0;
       font-size:16px;
-      border-left:4px solid var(--main);
-      padding-left:10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
-    p{margin:0;color:var(--text);line-height:1.85;}
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--main);
+      box-shadow:0 0 0 4px rgba(124,58,237,.18);
+    }
+    p{margin:0;color:#e5e7eb;line-height:1.9;}
     .muted{color:var(--sub);}
-    .tags{margin-top:10px;}
+
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
     .tag{
-      display:inline-block;
       font-size:13px;
-      padding:6px 10px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      padding:6px 10px;border-radius:999px;
+      color:#e7e7e7;
+    }
+
+    .projects{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    @media(max-width:720px){
+      .projects{grid-template-columns:1fr;}
+    }
+    .pitem{
+      border:1px solid var(--line);
+      background:var(--card2);
+      border-radius:18px;
+      padding:14px;
+      transition:.15s;
+    }
+    .pitem:hover{
+      transform:translateY(-1px);
+      border-color:rgba(124,58,237,.55);
+    }
+    .ptitle{font-weight:800;}
+    .pdesc{margin-top:8px;color:var(--sub);line-height:1.75;font-size:14px;}
+    .plink{
+      margin-top:12px;
+      display:flex;gap:10px;flex-wrap:wrap;
+    }
+    .smallbtn{
+      font-size:13px;
+      padding:8px 10px;
       border-radius:999px;
-      margin:6px 8px 0 0;
-      background:#eef2ff;
-      color:#3730a3;
-      border:1px solid rgba(79,70,229,.12);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:#fff;
     }
-    .list{margin:0;padding-left:18px;line-height:1.9;color:var(--text);}
-    .item{margin:8px 0;}
-    .title{
-      font-weight:700;
+    .smallbtn:hover{border-color:rgba(34,197,94,.6);}
+
+    .timeline{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+    .titem{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:12px 14px;
     }
-    .line{
-      height:1px;
-      background:var(--line);
-      margin:18px 0;
-    }
+    .titem b{color:#fff;}
     .footer{
+      margin:18px 0 24px;
       text-align:center;
       color:var(--sub);
       font-size:13px;
-      margin-top:18px;
-      padding-bottom:18px;
     }
-    .highlight{
+    .notice{
+      margin-top:10px;
+      border:1px dashed rgba(255,255,255,.22);
+      border-radius:16px;
       padding:12px 14px;
-      border-radius:14px;
-      background:linear-gradient(90deg, rgba(79,70,229,.07), rgba(79,70,229,.02));
-      border:1px solid rgba(79,70,229,.12);
-      margin-top:14px;
+      color:var(--sub);
       line-height:1.8;
+      background:rgba(0,0,0,.15);
     }
   </style>
 </head>
@@ -115,56 +187,52 @@
 <body>
   <div class="wrap">
 
-    <div class="card">
+    <!-- HERO -->
+    <section class="hero">
       <div class="top">
         <div>
           <h1>兰兰佩因</h1>
-          <div class="role">
-            电子信息工程｜嵌入式开发 / FPGA / 数据分析 / 技术内容创作者<br/>
-            <span class="muted">工科硬实力 + 表达力兼备，擅长把复杂知识讲清楚并落地实现</span>
+          <div class="sub">
+            电子信息工程｜嵌入式开发 · FPGA · 数据分析 · AI应用开发<br/>
+            技术表达型创作者（B站 / 抖音 / 小红书运营）
+          </div>
+
+          <div class="chips">
+            <span class="chip">智能车省三｜队长</span>
+            <span class="chip">亚太杯 S奖｜队长</span>
+            <span class="chip">Zynq + AD9361｜收发链路</span>
+            <span class="chip">ACA影视设计国际专家认证</span>
           </div>
 
           <div class="btns">
-            <a class="btn main" href="https://space.bilibili.com/305579332" target="_blank">B站主页</a>
-            <a class="btn" href="https://github.com/Lanlanpein" target="_blank">GitHub主页</a>
+            <a class="btn main" href="https://space.bilibili.com/305579332" target="_blank">进入 B站主页</a>
+            <a class="btn" href="https://github.com/Lanlanpein" target="_blank">进入 GitHub</a>
+            <a class="btn green" href="#download">下载简历PDF（可选）</a>
           </div>
 
-          <div class="highlight">
-            ✅ 全国大学生智能汽车竞赛 省级三等奖（队长 / 软件负责人）<br/>
-            ✅ 亚太杯数学建模竞赛 S奖（队长 / 数据分析与仿真负责人）<br/>
-            ✅ 大创：基于FPGA的分布式定位网络原型系统（队员 / 收发链路实现）
+          <div class="notice">
+            说明：你可以把你真实项目仓库链接补上，这个主页就会变成你的“作品集入口”。<br/>
+            如果你愿意，我还可以帮你把每个项目写成更标准的<strong>STAR项目描述</strong>（校招/面试非常吃香）。
           </div>
-        </div>
-
-        <div style="min-width:260px">
-          <h2>核心优势</h2>
-          <ul class="list">
-            <li class="item">C / Python / MATLAB 多语言工程能力</li>
-            <li class="item">STM32：PID / 状态机 / 视觉算法 / 控制调参</li>
-            <li class="item">Zynq + AD9361：OFDM / DDS / DDC 信号收发</li>
-            <li class="item">Python：爬虫 / 数据分析 / AI大模型应用开发</li>
-            <li class="item">PR / PS 8年 + ACA影视设计国际专家认证</li>
-          </ul>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="grid">
+    <section class="grid">
 
+      <!-- 左侧 -->
       <div class="card">
-        <h2>个人简介</h2>
+        <h2><span class="dot"></span>个人简介</h2>
         <p>
-          我是兰兰佩因，电子信息工程方向学生，具备从<strong>软件算法 → 嵌入式系统 → FPGA射频链路</strong>的综合能力。
-          可使用 C 语言实现基础程序与嵌入式工程开发，熟悉 STM32 项目开发流程；同时具备 Python 数据分析、爬虫与 AI 大模型应用开发经验，
-          MATLAB 用于数学建模与仿真验证。具备团队协作与项目管理能力，多次担任队长完成竞赛与项目交付。
+          我是兰兰佩因，具备从<strong>算法与软件架构 → 嵌入式系统实现 → FPGA射频链路开发</strong>的综合能力。
+          熟悉 STM32 嵌入式开发流程，可使用 C 语言实现控制算法、状态机任务调度与视觉相关算法；
+          同时具备 Python 数据分析、爬虫与 AI 大模型应用开发能力，MATLAB 用于数学建模与仿真验证。
+          多次担任队长完成竞赛项目落地，具备团队协作与交付意识。
         </p>
 
-        <div class="line"></div>
-
-        <h2>技能栈</h2>
         <div class="tags">
           <span class="tag">C语言</span>
-          <span class="tag">STM32嵌入式</span>
+          <span class="tag">STM32</span>
           <span class="tag">多级PID</span>
           <span class="tag">状态机</span>
           <span class="tag">视觉算法</span>
@@ -172,88 +240,91 @@
           <span class="tag">数据分析</span>
           <span class="tag">爬虫</span>
           <span class="tag">AI大模型应用开发</span>
-          <span class="tag">MATLAB建模仿真</span>
+          <span class="tag">MATLAB</span>
           <span class="tag">FPGA / Zynq-7000</span>
           <span class="tag">Vivado</span>
           <span class="tag">AD9361</span>
           <span class="tag">OFDM</span>
           <span class="tag">DDS / DDC</span>
           <span class="tag">基础PCB设计</span>
-          <span class="tag">PR / PS</span>
-          <span class="tag">新媒体运营</span>
+          <span class="tag">PR/PS</span>
         </div>
 
-        <div class="line"></div>
+        <h2 style="margin-top:18px;"><span class="dot"></span>项目作品集（建议你开源/脱敏后放GitHub）</h2>
 
-        <h2>项目经历</h2>
-        <ul class="list">
-          <li class="item">
-            <span class="title">全国大学生智能汽车竞赛｜省级三等奖（队长 / 软件负责人）</span><br/>
-            <span class="muted">
-              负责软件总体架构设计与主体代码结构搭建；实现多级 PID 控制、视觉算法、状态机任务调度；
-              完成整车运动控制与稳定运行，具备完整调参与联调经验。
-            </span>
-          </li>
+        <div class="projects">
 
-          <li class="item">
-            <span class="title">亚太杯数学建模竞赛｜S奖（队长 / 数据分析与仿真负责人）</span><br/>
-            <span class="muted">
-              负责建模思路设计、数据分析编程与 MATLAB 仿真验证；
-              输出完整建模报告与结果解释，完成从数据到结论的闭环。
-            </span>
-          </li>
+          <div class="pitem">
+            <div class="ptitle">智能车｜控制算法与软件架构</div>
+            <div class="pdesc">
+              队长 / 软件负责人：负责主体代码结构设计，多级PID控制，状态机调度，视觉算法接入与整车联调。
+            </div>
+            <div class="plink">
+              <a class="smallbtn" href="https://github.com/Lanlanpein" target="_blank">仓库链接（待补）</a>
+              <a class="smallbtn" href="https://space.bilibili.com/305579332" target="_blank">演示视频（可选）</a>
+            </div>
+          </div>
 
-          <li class="item">
-            <span class="title">大创项目：基于 FPGA 的分布式定位网络原型系统设计与研制（队员）</span><br/>
-            <span class="muted">
-              使用 AC820 FPGA 开发板（Zynq-7000，ARM + FPGA）与 AD9361 射频模块完成收发链路搭建；
-              实现 OFDM、DDS 上变频与 DDC 下变频，完成信号收发代码编写与联调验证。
-            </span>
-          </li>
-        </ul>
+          <div class="pitem">
+            <div class="ptitle">亚太杯数模｜数据分析与仿真验证</div>
+            <div class="pdesc">
+              队长：负责数据处理、模型建立与MATLAB仿真，完成结果解释与论文撰写，获得S奖。
+            </div>
+            <div class="plink">
+              <a class="smallbtn" href="https://github.com/Lanlanpein" target="_blank">仓库链接（待补）</a>
+            </div>
+          </div>
+
+          <div class="pitem">
+            <div class="ptitle">大创｜Zynq + AD9361 收发链路</div>
+            <div class="pdesc">
+              使用 AC820（Zynq-7000）与 AD9361 实现 OFDM、DDS上变频与DDC下变频，完成信号收发链路验证。
+            </div>
+            <div class="plink">
+              <a class="smallbtn" href="https://github.com/Lanlanpein" target="_blank">仓库链接（待补）</a>
+            </div>
+          </div>
+
+          <div class="pitem">
+            <div class="ptitle">Python｜爬虫/数据分析/AI应用Demo</div>
+            <div class="pdesc">
+              Python小工具、数据分析脚本、简单应用开发；可扩展为RAG/Agent类AI大模型应用作品。
+            </div>
+            <div class="plink">
+              <a class="smallbtn" href="https://github.com/Lanlanpein" target="_blank">仓库链接（待补）</a>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
+      <!-- 右侧 -->
       <div class="card">
-        <h2>校园经历</h2>
-        <ul class="list">
-          <li class="item">校学生会｜宣传设计部｜干事</li>
-          <li class="item">院新媒体中心｜主席</li>
-          <li class="item">班级｜宣传委员</li>
-        </ul>
+        <h2><span class="dot"></span>经历与荣誉（时间线）</h2>
+        <div class="timeline">
+          <div class="titem"><b>竞赛：</b>全国大学生智能汽车竞赛｜省级三等奖（队长 / 软件负责人）</div>
+          <div class="titem"><b>竞赛：</b>亚太杯数学建模竞赛｜S奖（队长 / 数据分析与仿真）</div>
+          <div class="titem"><b>项目：</b>大创《基于FPGA的分布式定位网络原型系统》（队员 / 收发链路）</div>
+          <div class="titem"><b>组织：</b>院新媒体中心主席 / 校学生会宣传设计部干事 / 班级宣传委员</div>
+          <div class="titem"><b>奖学金：</b>学习优秀 / 文体 / 团学工作奖学金</div>
+          <div class="titem"><b>技能：</b>PR/PS 自学 8年｜ACA影视设计国际专家认证</div>
+        </div>
 
-        <div class="line"></div>
+        <h2 style="margin-top:18px;"><span class="dot"></span>内容创作</h2>
+        <p class="muted">
+          B站、抖音、小红书均有运营账号，具备“技术表达 + 视觉设计 + 内容传播”能力。<br/>
+          适合：技术岗 / 科研项目组 / 需要写文档&做汇报的工程岗位。
+        </p>
 
-        <h2>获奖荣誉</h2>
-        <ul class="list">
-          <li class="item">学习优秀奖学金</li>
-          <li class="item">文体奖学金</li>
-          <li class="item">团学工作奖学金</li>
-          <li class="item">全国大学生智能汽车竞赛 省三（队长）</li>
-          <li class="item">亚太杯数学建模 S奖（队长）</li>
-        </ul>
-
-        <div class="line"></div>
-
-        <h2>新媒体与设计能力</h2>
-        <ul class="list">
-          <li class="item">自学 PR / PS 8年，具备剪辑与视觉设计能力</li>
-          <li class="item">ACA 影视设计国际专家认证</li>
-          <li class="item">B站 / 抖音 / 小红书 多平台账号运营</li>
-        </ul>
-
-        <div class="line"></div>
-
-        <h2>建议你GitHub展示的仓库</h2>
-        <ul class="list">
-          <li class="item">✅ STM32：PID + 状态机工程模板</li>
-          <li class="item">✅ 智能车：代码结构（脱敏后开源）</li>
-          <li class="item">✅ Python：爬虫 + 数据分析项目</li>
-          <li class="item">✅ FPGA：AD9361 收发链路 Demo</li>
-          <li class="item">✅ AI应用：RAG/Agent Demo</li>
-        </ul>
+        <h2 id="download" style="margin-top:18px;"><span class="dot"></span>下载简历PDF（可选项）</h2>
+        <p class="muted">
+          你可以在仓库中上传一个 <b>resume.pdf</b>，然后把按钮链接改成：<br/>
+          <span style="color:#fff;">https://lanlanpein.github.io/resume.pdf</span>
+        </p>
       </div>
 
-    </div>
+    </section>
 
     <div class="footer">
       © <span id="year"></span> 兰兰佩因｜Powered by GitHub Pages
